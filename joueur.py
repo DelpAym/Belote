@@ -6,15 +6,28 @@ from carte import Couleur, Valeur, Carte
 
 class Joueur():
     def __init__(self, id, equipe):
+        """
+        Cette fonction permet d'initialiser la classe Joueur.
+    
+        Args:
+            id (int): Nom du joueur
+            equipe (carte): Equipe du joueur
+        """
         from partie import Partie
         self.id = id
         self.main = []
         self.equipe = equipe
     
     def __str__(self):
+        """
+        Cette fonction permet de renvoyer les caractéristiques du joueur.
+        """
         return (f"Joueur {self.id} de l'équipe {self.equipe}")
     
     def trier_main(self):
+        """
+        Cette fonction permet de trier les cartes de la main du joueur.
+        """
         ordre_couleurs = list(Couleur)
         ordre_valeurs = list(Valeur)
 
@@ -26,6 +39,9 @@ class Joueur():
         )
 
     def afficher_main(self):
+        """
+        Cette fonction permet d'afficher clairement la main du joueur.
+        """
         self.trier_main()
         print("\nVotre main :")
         print("-" * 35)
@@ -36,6 +52,15 @@ class Joueur():
         print("-" * 35)
     
     def afficher_main_jouable(self, atout, carte_m, joueur_m, cartes_posees = None, ):
+        """
+        Cette fonction permet de renvoyer la liste des cartes que le joueur peut jouer en fonction du pli en cours.
+    
+        Args:
+            atout (couleur): La couleur de l'atout
+            carte_m (carte): La carte maitre
+            joueur_m (int): L'id du joueur maitre 
+            cartes_posees (list): Les cartes déjà jouées sur le pli
+        """
         self.trier_main()
         cartes_main = []
         cartes_jouables = []
@@ -147,6 +172,18 @@ class Joueur():
 
 
     def jouer(self, atout, carte_m, joueur_m, carte_posee = None, pli_equipeA = None, pli_equipeB = None, prise = None):
+        """
+        Cette fonction permet de renvoyer la carte que le joueur souhaite jouer.
+    
+        Args:
+            atout (couleur): La couleur de l'atout
+            carte_m (carte): La carte maitre
+            joueur_m (int): L'id du joueur maitre 
+            cartes_posees (list): Les cartes déjà jouées sur le pli
+            pli_equipeA (list) : Liste des cartes remportées par l'équipe A
+            pli_equipeB (list) : Liste des cartes remportées par l'équipe B
+            prise (str) : Nom de l'équipe qui a pris
+        """
         cartes = []
         cartes_jouables = []
         if len(carte_posee) == 0 or carte_posee == None:

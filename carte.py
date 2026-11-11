@@ -27,7 +27,9 @@ class Carte:
     valeur: Valeur
 
     def __str__(self):
-
+        """
+        Cette fonction permet d'afficher proprement les cartes.
+        """
         symboles = {
             Couleur.Pique: "♠",
             Couleur.Coeur: "\033[31m♥\033[0m",
@@ -37,6 +39,9 @@ class Carte:
         return f"{self.valeur.value} {symboles[self.couleur]}"
 
     def get_couleur(self):
+        """
+        Cette fonction permet d'obtenir la couleur d'une carte.
+        """
         couleur_str = {
             Couleur.Pique: "Pique",
             Couleur.Coeur: "Coeur",
@@ -46,6 +51,12 @@ class Carte:
         return couleur_str[self.couleur]
 
     def get_value(self, atout = False):
+        """
+        Cette fonction permet d'obtenir le nombre de point qu'une carte vaut
+    
+        Args:
+            atout (couleur): Couleur de l'atout
+        """
         if self.get_couleur() == atout:
             if self.valeur == Valeur.As:
                 return 11
@@ -59,7 +70,7 @@ class Carte:
                 return 10
             if self.valeur == Valeur.Neuf:
                 return 14
-            if self.valeur == Valeur.Huit:
+            if self.valeur == Valeur.Huit: #Ici la valeur vaut - 2 pour différencier les 7, 8 et 9.
                 return -2
             if self.valeur == Valeur.Sept:
                 return -3
@@ -83,6 +94,3 @@ class Carte:
                 return -3
 
 
-if __name__ == '__main__':
-    c = None
-    print(c)

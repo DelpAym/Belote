@@ -13,6 +13,13 @@ class Main:
 
 
     def play(self):
+        """
+        Cette fonction permet de lancer et gérer l'avancement d'une partie.
+    
+        Args:
+            cartes_par_joueur (int): Le nombre de carte à distribuer par joueur, 5 par défaut.
+            nombre_joueurs (int): Le nombre de joueur.
+        """
         jeu = Partie(self.joueur1, self.joueur2, self.joueur3, self.joueur4)
         try:
             score_max = int(input(f"En combien de point souaitez vous jouer la partie? ").strip())
@@ -40,7 +47,7 @@ class Main:
             print("-" * 70)
             print(f"Dommage, vous avez perdu avec {jeu.scoreA} contre {jeu.scoreB} pour l'autre équipe...")
             print("-" * 70)
-        if jeu.scoreA < jeu.scoreB:
+        if jeu.scoreA == jeu.scoreB:
             print("-" * 70)
             print(f"C'est rare mais c'est un match nul...")
             print("-" * 70)

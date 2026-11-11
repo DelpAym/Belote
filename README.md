@@ -32,7 +32,7 @@ Ce jeu suit les règles classique de la belote. Le but est donc de gagner.
     * **Pour jouer une carte :** tappez l'indice écrit à côté de la carte souaithez (les cartes grisées ne peuvent pas être jouées).
 
 
- - Dès qu'une équipe atteint le score entrée lors de la seconde étape, la partie s'arrête.
+ - Dès qu'une équipe atteint le score entré lors de la seconde étape, la partie s'arrête.
 
 <h2>Analyse : </h2>
 

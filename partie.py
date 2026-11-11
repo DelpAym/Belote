@@ -6,6 +6,23 @@ from joueur import Joueur
 
 class Partie:
     def __init__(self, joueur1, joueur2, joueur3, joueur4, atout = None, premier_joueur = 0, pli_equipeA = [], pli_equipeB = [], scoreA = 0, scoreB = 0, prise = None, belote = None):
+        """
+        Cette fonction permet d'initialiser la classe Partie.
+    
+        Args:
+            joueur1 (joueur): Premier joueur
+            joueur2 (joueur): Second joueur
+            joueur3 (joueur): Troisième joueur
+            joueur4 (joueur): Quatrième joueur
+            atout (couleur): Couleur de l'atout 
+            premier_joueur (int): L'id du joueur de départ
+            pli_equipeA (list) : Liste des cartes remportées par l'équipe A
+            pli_equipeB (list) : Liste des cartes remportées par l'équipe B
+            scoreA (int) : Point remporté par l'équipe A
+            scoreB (int) : Point remporté par l'équipe B
+            prise (str) : Nom de l'équipe qui a pris
+            belote (str) : id du joueur qui a potentiellement la belote
+        """
         self.cartes = [
             Carte(couleur, valeur)
             for couleur in Couleur
@@ -23,11 +40,20 @@ class Partie:
 
 
     def melanger(self):
+        """
+        Cette fonction permet de mélanger le jeu de carte avant de distribuer.
+        """
         random.shuffle(self.cartes)
 
 
     def distribuer1(self, cartes_par_joueur=5, nombre_joueurs=4):
-        
+        """
+        Cette fonction permet de distribuer les premières cartes à chaque joueur.
+    
+        Args:
+            cartes_par_joueur (int): Le nombre de carte à distribuer par joueur, 5 par défaut.
+            nombre_joueurs (int): Le nombre de joueur.
+        """
         cartes_restantes = self.cartes.copy()
         for joueur in self.joueurs:
             for i in range (cartes_par_joueur):
@@ -37,6 +63,10 @@ class Partie:
     
 
     def proposer_carte(self):
+        """
+        Cette fonction permet de proposer à chaque joueur une carte pour savoir si ils la prennent ou non, 
+        afin d'initialiser la couleur de l'atout et de définir l'équipe qui prend.
+        """
         cartes_restantes = self.cartes.copy()
         carte_tiree = cartes_restantes.pop()
         print(f"Carte proposée : {carte_tiree}")
@@ -161,6 +191,12 @@ class Partie:
 
 
     def distribuer2(self, nombre_joueurs=4):
+        """
+        Cette fonction permet de distribuer les cartes restantes.
+    
+        Args:
+            nombre_joueurs (int): Le nombre de joueur.
+        """
         cartes_restantes = self.cartes.copy()
         for joueur in self.joueurs:
             dame_b = False
@@ -182,6 +218,12 @@ class Partie:
 
     
     def carte_maitre(self, cartes):
+        """
+        Cette fonction permet de savoir le joueur et la carte maître sur le pli en cours.
+    
+        Args:
+            cartes (list): Liste de carte.
+        """
         if self.atout == None:
             return None, None
         if len(cartes) == 0:
@@ -207,6 +249,9 @@ class Partie:
 
 
     def pli(self):
+        """
+        Cette fonction permet de gérer le déroulement d'un pli.
+        """
         premier_j = self.premier_joueur
         carte_jouee = []
         atout_pli = self.atout
@@ -237,6 +282,13 @@ class Partie:
 
 
     def compte_point(self, joueur_m):
+        """
+        Cette fonction permet de calculer les points de chaque équipe au cour de la partie. Elle
+        permet égallement d'initialiser le tour suivant.
+    
+        Args:
+            joueur_m (int): joueur qui a remporté le dernier pli (pour le 10 de der)
+        """
         score_jeu_A = 0
         score_jeu_B = 0
 
